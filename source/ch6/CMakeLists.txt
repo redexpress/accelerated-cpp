@@ -1,0 +1,1 @@
+add_executable(ch6_app gradeapp.cpp grade.cpp median.cpp Student_info.cpp)

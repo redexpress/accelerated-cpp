@@ -3,4 +3,6 @@ project(accelerated_cpp)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_executable(accelerated_cpp main.cpp)
+include_directories(${CMAKE_SOURCE_DIR}/source)
+
+add_subdirectory(source)
