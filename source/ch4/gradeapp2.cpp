@@ -5,6 +5,7 @@
 #include <istream>
 #include <string>
 #include <vector>
+#include <stdexcept>
 
 using std::cin;      using std::sort;
 using std::cout;     using std::streamsize;
