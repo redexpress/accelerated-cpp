@@ -4,5 +4,7 @@ project(accelerated_cpp)
 set(CMAKE_CXX_STANDARD 23)
 
 include_directories(${CMAKE_SOURCE_DIR}/source)
+include_directories(${CMAKE_SOURCE_DIR}/exercise)
 
 add_subdirectory(source)
+add_subdirectory(exercise)
