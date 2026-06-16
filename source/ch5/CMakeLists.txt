@@ -5,7 +5,6 @@ file(COPY ${CH4_SRC_DIR}/Student_info.cpp
         ${CH4_SRC_DIR}/median.cpp
         ${CH4_SRC_DIR}/median.h
         ${CH4_SRC_DIR}/grade.h
-        ${CH4_SRC_DIR}/grade.cpp
         DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
 file(COPY ${CH4_SRC_DIR}/grade.h
@@ -15,7 +14,7 @@ file(COPY ${CH4_SRC_DIR}/grade.h
 add_executable(ch5_app
         split.cpp
         ${CMAKE_CURRENT_BINARY_DIR}/Student_info.cpp
-        ${CMAKE_CURRENT_BINARY_DIR}/grade.cpp
+        grade.cpp
         ${CMAKE_CURRENT_BINARY_DIR}/median.cpp)
 
 target_include_directories(ch5_app PRIVATE
