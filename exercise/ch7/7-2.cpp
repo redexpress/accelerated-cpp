@@ -10,7 +10,7 @@
 #include "grade.h"
 #include "Student_info.h"
 
-char grade_char(double score) {
+char letter_grade(double score) {
     if (score >= 90) return 'A';
     if (score >= 80) return 'B';
     if (score >= 70) return 'C';
@@ -50,12 +50,12 @@ NoHomeworkStudent 80 70
         std::cout << std::setw(maxlen+1) << students[i].name;
         try {
             double final_grade = grade(students[i]);
-            char letter = grade_char(final_grade);
+            char letter = letter_grade(final_grade);
             grade_count[letter]++;
 
             std::streamsize  prec = std::cout.precision();
             std::cout << " Your final grade is " << std::setprecision(3)
-                << final_grade << std::setprecision(prec) << " " << grade_char(final_grade) << std::endl;
+                << final_grade << std::setprecision(prec) << " " << letter_grade(final_grade) << std::endl;
         } catch (std::domain_error e) {
             std::cout << e.what();
         }
