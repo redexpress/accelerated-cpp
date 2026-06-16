@@ -54,7 +54,7 @@ int main() {
     assert(*i == 'e');
     assert(*(--i) == 'h');
     assert(*(i--) == 'h');
-    assert(i == s.begin());
+    assert(i == s.begin() - 1);
 
     // 7. STL algorithms work
     auto itcomma = std::find(s.begin(), s.end(), ',');

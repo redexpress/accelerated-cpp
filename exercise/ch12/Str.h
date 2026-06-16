@@ -13,6 +13,7 @@
 class Str {
     friend std::istream& operator>>(std::istream&, Str&);
     friend std::istream& getline(std::istream&, Str&);
+    friend std::istream& getline(std::istream&, Str&, char);
     friend Str operator+(const char*, const Str&);
 public:
     typedef size_t size_type;
@@ -175,6 +176,7 @@ private:
 std::ostream& operator<<(std::ostream&, const Str&);
 std::istream& operator>>(std::istream&, Str&);
 std::istream& getline(std::istream&, Str&);
+std::istream& getline(std::istream&, Str&, char);
 
 Str operator+(const Str&, const Str&);
 Str operator+(const Str&, const char*);
@@ -189,8 +191,7 @@ bool operator==(const Str&, const Str&);
 bool operator!=(const Str&, const Str&);
 
 inline std::ostream& operator<<(std::ostream& os, const Str& s) {
-    for (Str::size_type i = 0; i != s.size(); ++i)
-        os << s[i];
+    std::copy(s.begin(), s.end(), std::ostream_iterator<char>(os));
     return os;
 }
 
@@ -214,11 +215,15 @@ inline std::istream& operator>>(std::istream& is, Str& s) {
 }
 
 inline std::istream& getline(std::istream& is, Str& s) {
+    return getline(is, s, '\n');
+}
+
+inline std::istream& getline(std::istream& is, Str& s, char delim) {
     s.d[0] = '\0';
     s.len = 0;
 
     char c;
-    while (is.get(c) && c != '\n')
+    while (is.get(c) && c != delim)
         s.push_one(c);
     return is;
 }
