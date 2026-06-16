@@ -7,7 +7,7 @@
 #include <vector>
 #include <stdexcept>
 #include "grade.h"
-#include "Student_info.h"
+#include "../ch9/Student_info.h"
 #include "median.h"
 
 using std::cin;      using std::sort;
