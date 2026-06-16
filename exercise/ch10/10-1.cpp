@@ -7,7 +7,17 @@
 #include <string>
 #include <vector>
 #include <stdexcept>
-#include "median.h"
+
+double median(std::vector<double> vec) {
+    auto size = vec.size();
+    if (size == 0)
+        return 0.0;
+    sort(vec.begin(), vec.end());
+
+    auto mid = size/2;
+
+    return size % 2 == 0 ? (vec[mid] + vec[mid-1]) / 2 : vec[mid];
+}
 
 double grade(double midterm, double final, double homework) {
     return 0.2 * midterm + 0.4 * final + 0.4 * homework;
@@ -62,6 +72,20 @@ bool compare(const Student_info& x, const Student_info& y) {
     return x.name() < y.name();
 }
 
+std::string letter_grade(double grade) {
+    static const std::vector<std::pair<double, std::string>> table = {
+        {97, "A+"}, {94, "A"}, {90, "A-"}, {87, "B+"}, {84, "B"}, {80, "B-"},
+        {77, "C+"}, {74, "C"}, {70, "C-"}, {60, "D"}, {0, "F"}
+    };
+
+    for (const auto& [threshold, letter] : table) {
+        if (grade >= threshold) {
+            return letter;
+        }
+    }
+    return "???";
+}
+
 int main() {
     std::vector<Student_info> students;
     Student_info record;
@@ -96,7 +120,7 @@ NoHomeworkStudent 80 70
             double final_grade = students[i].grade();
             auto prec = std::cout.precision();
             std::cout << " Your final grade is " << std::setprecision(3)
-                << final_grade << std::setprecision(prec) << std::endl;
+                << letter_grade(final_grade) << std::setprecision(prec) << std::endl;
         } catch (std::domain_error e) {
             std::cout << e.what();
         }
