@@ -19,7 +19,6 @@ jobs:
             cc: msvc
             cxx: cl
           - os: macos-latest
-            cc: apple-clang
             cxx: clang++
 
     steps:
