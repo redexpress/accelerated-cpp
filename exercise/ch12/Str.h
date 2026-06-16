@@ -2,10 +2,12 @@
 #define GUARD_Str
 
 #include <algorithm>
+#include <cstddef>
 #include <cstring>
 #include <cctype>
 #include <iostream>
 #include <istream>
+#include <iterator>
 #include <stdexcept>
 
 class Str {
@@ -14,8 +16,81 @@ class Str {
     friend Str operator+(const char*, const Str&);
 public:
     typedef size_t size_type;
-    typedef char* iterator;
-    typedef const char* const_iterator;
+
+    class const_iterator;
+    class iterator {
+        char* p;
+        friend class const_iterator;
+    public:
+        typedef std::random_access_iterator_tag iterator_category;
+        typedef char                          value_type;
+        typedef std::ptrdiff_t                difference_type;
+        typedef char*                         pointer;
+        typedef char&                         reference;
+
+        iterator() : p(0) {}
+        explicit iterator(char* x) : p(x) {}
+
+        reference  operator*()  const { return *p; }
+        pointer    operator->() const { return  p; }
+        reference  operator[](difference_type n) const { return p[n]; }
+
+        iterator& operator++()    { ++p; return *this; }
+        iterator  operator++(int) { iterator t = *this; ++p; return t; }
+        iterator& operator--()    { --p; return *this; }
+        iterator  operator--(int) { iterator t = *this; --p; return t; }
+
+        iterator& operator+=(difference_type n) { p += n; return *this; }
+        iterator& operator-=(difference_type n) { p -= n; return *this; }
+        friend iterator operator+(iterator it, difference_type n) { it += n; return it; }
+        friend iterator operator+(difference_type n, iterator it) { it += n; return it; }
+        friend iterator operator-(iterator it, difference_type n) { it -= n; return it; }
+        friend difference_type operator-(const iterator& a, const iterator& b) { return a.p - b.p; }
+
+        friend bool operator==(const iterator& a, const iterator& b) { return a.p == b.p; }
+        friend bool operator!=(const iterator& a, const iterator& b) { return a.p != b.p; }
+        friend bool operator< (const iterator& a, const iterator& b) { return a.p <  b.p; }
+        friend bool operator<=(const iterator& a, const iterator& b) { return a.p <= b.p; }
+        friend bool operator> (const iterator& a, const iterator& b) { return a.p >  b.p; }
+        friend bool operator>=(const iterator& a, const iterator& b) { return a.p >= b.p; }
+    };
+
+    class const_iterator {
+        const char* p;
+    public:
+        typedef std::random_access_iterator_tag iterator_category;
+        typedef char                          value_type;
+        typedef std::ptrdiff_t                difference_type;
+        typedef const char*                   pointer;
+        typedef const char&                   reference;
+
+        const_iterator() : p(0) {}
+        const_iterator(const char* x) : p(x) {}
+        const_iterator(iterator it) : p(it.p) {}
+
+        reference  operator*()  const { return *p; }
+        pointer    operator->() const { return  p; }
+        reference  operator[](difference_type n) const { return p[n]; }
+
+        const_iterator& operator++()    { ++p; return *this; }
+        const_iterator  operator++(int) { const_iterator t = *this; ++p; return t; }
+        const_iterator& operator--()    { --p; return *this; }
+        const_iterator  operator--(int) { const_iterator t = *this; --p; return t; }
+
+        const_iterator& operator+=(difference_type n) { p += n; return *this; }
+        const_iterator& operator-=(difference_type n) { p -= n; return *this; }
+        friend const_iterator operator+(const_iterator it, difference_type n) { it += n; return it; }
+        friend const_iterator operator+(difference_type n, const_iterator it) { it += n; return it; }
+        friend const_iterator operator-(const_iterator it, difference_type n) { it -= n; return it; }
+        friend difference_type operator-(const const_iterator& a, const const_iterator& b) { return a.p - b.p; }
+
+        friend bool operator==(const const_iterator& a, const const_iterator& b) { return a.p == b.p; }
+        friend bool operator!=(const const_iterator& a, const const_iterator& b) { return a.p != b.p; }
+        friend bool operator< (const const_iterator& a, const const_iterator& b) { return a.p <  b.p; }
+        friend bool operator<=(const const_iterator& a, const const_iterator& b) { return a.p <= b.p; }
+        friend bool operator> (const const_iterator& a, const const_iterator& b) { return a.p >  b.p; }
+        friend bool operator>=(const const_iterator& a, const const_iterator& b) { return a.p >= b.p; }
+    };
 
     Str& operator+=(const Str& s) {
         size_type old = len;
@@ -60,11 +135,12 @@ public:
     char& operator[](size_type i) { return d[i]; }
     const char& operator[](size_type i) const { return d[i]; }
     size_type size() const { return len; }
+    explicit operator bool() const noexcept { return len != 0; }
 
-    iterator begin() { return d; }
-    const_iterator begin() const { return d; }
-    iterator end() { return d + len; }
-    const_iterator end() const { return d + len; }
+    iterator       begin()       { return iterator(d); }
+    const_iterator begin() const { return const_iterator(d); }
+    iterator       end()         { return iterator(d + len); }
+    const_iterator end()   const { return const_iterator(d + len); }
 
     const char* c_str() const { return d; }
     const char* data()  const { return d; }
