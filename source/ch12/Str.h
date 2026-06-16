@@ -1,5 +1,5 @@
-#ifndef GUARD_Str_h
-#define GUARD_Str_h
+#ifndef GUARD_Str
+#define GUARD_Str
 #include <algorithm>
 #include <cstring>
 #include <cctype>

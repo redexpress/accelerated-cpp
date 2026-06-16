@@ -1,0 +1,6 @@
+add_executable(12-0 12-0.cpp)
+add_executable(12-1 12-1.cpp)
+add_executable(12-2 12-2.cpp)
+add_executable(12-3 12-3.cpp)
+add_executable(12-4 12-4.cpp)
+add_executable(12-5 12-5.cpp)
