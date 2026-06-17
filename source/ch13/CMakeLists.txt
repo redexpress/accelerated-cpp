@@ -22,8 +22,15 @@ add_executable(ch13_app2
         ${CMAKE_CURRENT_BINARY_DIR}/grade.cpp
         ${CMAKE_CURRENT_BINARY_DIR}/median.cpp)
 
-add_executable(ch13_app2
+add_executable(ch13_app3
         coreapp2.cpp
+        read_hw.cpp
+        Core.cpp
+        ${CMAKE_CURRENT_BINARY_DIR}/grade.cpp
+        ${CMAKE_CURRENT_BINARY_DIR}/median.cpp)
+
+add_executable(ch13_app4
+        coreapp3.cpp
         read_hw.cpp
         Core.cpp
         ${CMAKE_CURRENT_BINARY_DIR}/grade.cpp
@@ -32,3 +39,4 @@ add_executable(ch13_app2
 target_include_directories(ch13_app PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
 target_include_directories(ch13_app2 PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
 target_include_directories(ch13_app3 PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
+target_include_directories(ch13_app4 PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
