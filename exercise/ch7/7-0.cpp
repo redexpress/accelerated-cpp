@@ -81,8 +81,16 @@ std::vector<std::string> gen_sentence(const Grammar& g) {
 
 int main() {
     std::vector<std::string> sentence = gen_sentence(read_grammar(std::cin));
+#if defined(__cpp_lib_ranges_join_with) && __cpp_lib_ranges_join_with >= 202202L
     auto joined = sentence | std::views::join_with(' ');
     std::ranges::copy(joined, std::ostream_iterator<char>(std::cout));
     std::cout << '\n';
+#else
+    for (std::size_t i = 0; i < sentence.size(); ++i) {
+        if (i) std::cout << ' ';
+        std::cout << sentence[i];
+    }
+    std::cout << '\n';
+#endif
     return 0;
 }
