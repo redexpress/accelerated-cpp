@@ -32,17 +32,17 @@ int main()
             record = new Core;
         else
             record = new Grad;
-        readcord->read(cin);
-        maxlen = max(maxlen, record.name().size());
+        record->read(cin);
+        maxlen = max(maxlen, record->name().size());
         students.push_back(record);
     }
 
     sort(students.begin(), students.end(), compare_core_ptrs);
 
     for (vector<Core>::size_type i = 0; i != students.size(); ++i) {
-        cout<<setw(maxlen+1)<<students[i].name();
+        cout<<setw(maxlen+1)<<students[i]->name();
         try {
-            double final_grade = students[i].grade();
+            double final_grade = students[i]->grade();
             streamsize prec = cout.precision();
             cout << setprecision(3) << final_grade
                  << setprecision(prec) << endl;
