@@ -1,0 +1,7 @@
+add_executable(2-0 2-0.cpp)
+add_executable(2-1 2-1.cpp)
+add_executable(2-2 2-2.cpp)
+add_executable(2-3 2-3.cpp)
+add_executable(2-7 2-7.cpp)
+add_executable(2-8 2-8.cpp)
+add_executable(2-9 2-9.cpp)

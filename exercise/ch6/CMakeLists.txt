@@ -15,3 +15,8 @@ add_executable(6-0
         ${CMAKE_CURRENT_BINARY_DIR}/median.cpp)
 
 target_include_directories(6-0 PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
+
+add_executable(6-1 6-1.cpp)
+add_executable(6-2 6-2.cpp)
+add_executable(6-3 6-3.cpp)
+add_executable(6-4 6-4.cpp)

@@ -8,6 +8,9 @@ file(COPY ${CH4_SRC_DIR}/Student_info.cpp
         ${CH4_SRC_DIR}/median.h
         DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
+add_executable(7-0 7-0.cpp)
+add_executable(7-1 7-1.cpp)
+
 add_executable(7-2
         7-2.cpp
         ${CMAKE_CURRENT_BINARY_DIR}/Student_info.cpp

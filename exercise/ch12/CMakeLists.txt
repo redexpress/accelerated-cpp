@@ -1,3 +1,7 @@
+set(CH12_SRC_DIR ${CMAKE_SOURCE_DIR}/source/ch12)
+
+file(COPY ${CH12_SRC_DIR}/Str.h DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+
 add_executable(12-0 12-0.cpp)
 add_executable(12-1 12-1.cpp)
 add_executable(12-2 12-2.cpp)
@@ -8,3 +12,14 @@ add_executable(12-6 12-6.cpp)
 add_executable(12-7 12-7.cpp)
 add_executable(12-8 12-8.cpp)
 add_executable(12-9 12-9.cpp)
+
+target_include_directories(12-0 PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
+target_include_directories(12-1 PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
+target_include_directories(12-2 PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
+target_include_directories(12-3 PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
+target_include_directories(12-4 PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
+target_include_directories(12-5 PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
+target_include_directories(12-6 PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
+target_include_directories(12-7 PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
+target_include_directories(12-8 PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
+target_include_directories(12-9 PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
