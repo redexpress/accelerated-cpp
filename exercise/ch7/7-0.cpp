@@ -4,6 +4,7 @@
 #include <ranges>
 #include <map>
 #include <random>
+#include <sstream>
 #include <string>
 #include <vector>
 #include <stdexcept>
@@ -80,7 +81,19 @@ std::vector<std::string> gen_sentence(const Grammar& g) {
 }
 
 int main() {
-    std::vector<std::string> sentence = gen_sentence(read_grammar(std::cin));
+    std::istringstream input("<sentence> the <noun-phrase> <verb> <location>\n"
+                             "<noun-phrase> <article> <adjective> <noun>\n"
+                             "<article> a\n"
+                             "<article> the\n"
+                             "<adjective> quick\n"
+                             "<adjective> lazy\n"
+                             "<noun> fox\n"
+                             "<noun> dog\n"
+                             "<verb> jumps\n"
+                             "<verb> sits\n"
+                             "<location> over the fence\n"
+                             "<location> under the tree\n");
+    std::vector<std::string> sentence = gen_sentence(read_grammar(input));
 #if defined(__cpp_lib_ranges_join_with) && __cpp_lib_ranges_join_with >= 202202L
     auto joined = sentence | std::views::join_with(' ');
     std::ranges::copy(joined, std::ostream_iterator<char>(std::cout));

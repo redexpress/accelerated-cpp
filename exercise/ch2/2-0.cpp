@@ -1,10 +1,12 @@
 #include <iostream>
 #include <string>
+#include <sstream>
 
 int main() {
     std::cout << "Please enter your first name: ";
     std::string name;
-    std::cin >> name;
+    std::istringstream input("Yang");
+    input >> name;
     const auto greeting = "Hello, " + name + "!";
     const int pad = 1;
     const int rows = pad * 2 + 3;

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 #include <string>
 #include <vector>
 #include <map>
@@ -7,7 +8,8 @@
 int main() {
     std::string s;
     std::map<std::string, int> counters;
-    while (std::cin >> s)
+    std::istringstream input("apple banana apple cherry banana apple");
+    while (input >> s)
         ++counters[s];
     std::map<int, std::vector<std::string>> groups;
     for (const auto& [w, cnt] : counters) {

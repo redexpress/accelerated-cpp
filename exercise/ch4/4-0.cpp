@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <ios>
 #include <iostream>
+#include <sstream>
 #include <istream>
 #include <string>
 #include <vector>
@@ -71,7 +72,8 @@ int main()
     Student_info record;
     std::string::size_type maxlen = 0;
 
-    while (read(std::cin, record)) {
+    std::istringstream input("Yang 80 90 85 90 78 92 88");
+    while (read(input, record)) {
         maxlen = std::max(maxlen, record.name.size());
         students.push_back(record);
     }
@@ -83,7 +85,7 @@ int main()
         try {
             double final_grade = grade(students[i]);
             auto prec = std::cout.precision();
-            std::cout << "Your final grade is " << std::setprecision(3)
+            std::cout << "\nYour final grade is " << std::setprecision(3)
                 << final_grade << std::setprecision(prec) << std::endl;
         } catch (std::domain_error e) {
             std::cout << e.what();

@@ -1,6 +1,7 @@
 #include <iomanip>
 #include <ios>
 #include <iostream>
+#include <sstream>
 #include <string>
 #include <vector>
 #include <algorithm>
@@ -8,13 +9,15 @@
 int main() {
     std::cout << "Please enter your first name: ";
     std::string name;
-    std::cin >> name;
+    std::istringstream input("Yang");
+    input >> name;
     std::cout << "Hello, " << name << "!" << std::endl;
 
     std::cout << "Please enter your midterm and final exam grades: ";
     double midterm, final;
-    std::cin >> midterm >> final;
-    std::cout << "Enter all your homework grades, "
+    std::istringstream input2("80 90");
+    input2 >> midterm >> final;
+    std::cout << "\nEnter all your homework grades, "
             "followed by end-of-file";
     int count = 0;
 // #define USE_AVERAGE
@@ -22,7 +25,8 @@ int main() {
     double sum = 0;
     double x;
 
-    while (std::cin >> x) {
+    std::istringstream input3("85 90 78 92 88");
+    while (input3 >> x) {
         ++count;
         sum += x;
     }
@@ -30,7 +34,8 @@ int main() {
     std::vector<double> homework;
     double x;
 
-    while (std::cin >> x)
+    std::istringstream input3("85 90 78 92 88");
+    while (input3 >> x)
         homework.push_back(x);
 
     auto size = homework.size();
@@ -47,7 +52,7 @@ int main() {
             : homework[mid];
 #endif
     std::streamsize  prec = std::cout.precision();
-    std::cout << "Your final grade is " << std::setprecision(3)
+    std::cout << "\nYour final grade is " << std::setprecision(3)
         << 0.2 * midterm + 0.4 * final +
 #ifdef USE_AVERAGE
             0.4 * sum / count

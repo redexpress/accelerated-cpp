@@ -1,4 +1,3 @@
-
 set(CH4_SRC_DIR ${CMAKE_SOURCE_DIR}/source/ch4)
 set(CH9_SRC_DIR ${CMAKE_SOURCE_DIR}/source/ch9)
 set(CH13_SRC_DIR ${CMAKE_SOURCE_DIR}/source/ch13)
@@ -20,14 +19,12 @@ file(COPY
         ${CH15_SRC_DIR}/Pic.cpp
         DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
-
-add_executable(16-0
-        16-0.cpp
+add_executable(ch16_app
+        gradeapp.cpp
         ${CMAKE_CURRENT_BINARY_DIR}/Core.cpp
         ${CMAKE_CURRENT_BINARY_DIR}/Pic.cpp
         ${CMAKE_CURRENT_BINARY_DIR}/read_hw.cpp
         ${CMAKE_CURRENT_BINARY_DIR}/grade.cpp
         ${CMAKE_CURRENT_BINARY_DIR}/median.cpp)
-add_executable(16-1 16-1.cpp)
 
-target_include_directories(16-0 PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
+target_include_directories(ch16_app PRIVATE ${CMAKE_CURRENT_BINARY_DIR})

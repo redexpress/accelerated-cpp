@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <ios>
 #include <iostream>
+#include <sstream>
 #include <numeric>
 #include <string>
 #include <vector>
@@ -81,7 +82,8 @@ int main() {
     Student_info student;
     std::string::size_type maxlen = 0;
 
-    while (read(std::cin, student)) {
+    std::istringstream input("Yang 80 90 85 90 78 92 88");
+    while (read(input, student)) {
         if (dis_all_hw(student))
             did.push_back(student);
         else
@@ -93,7 +95,7 @@ int main() {
     }
     if (didnt.empty()) {
         std::cout << "Every student did all the homework!" << std::endl;
-        return 1;
+        return 0;
     }
 
     write_analysis(std::cout, "median", median_analysis, did, didnt);

@@ -1,14 +1,17 @@
 #include <iostream>
 #include <string>
+#include <sstream>
 
 int main() {
     std::cout << "Please enter your first name: ";
     std::string name;
-    std::cin >> name;
+    std::istringstream input("Yang");
+    input >> name;
     const auto greeting = "Hello, " + name + "!";
     int pad = 0;
     std::cout << "Please input pad number: ";
-    std::cin >> pad;
+    std::istringstream input2("1");
+    input2 >> pad;
     const int rows = pad * 2 + 3;
     const auto cols = greeting.length() + pad * 2 + 2;
     std::cout << std::endl;
